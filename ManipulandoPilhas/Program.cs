@@ -20,9 +20,9 @@ namespace ManipulandoPilhas
     {
         static void Main(string[] args)
         {
-            PilhaNumero p1 = new PilhaNumero();
-            PilhaNumero p2 = new PilhaNumero();
-            PilhaNumero p3 = new PilhaNumero();
+            PilhaNumero p1 = new();
+            PilhaNumero p2 = new();
+            PilhaNumero p3 = new();
 
             while (true)
             {
@@ -69,7 +69,7 @@ namespace ManipulandoPilhas
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Opcao inváida!");
+                        Console.WriteLine("Opcao inválida!");
                         break;
                 }
 
@@ -97,17 +97,17 @@ namespace ManipulandoPilhas
             Console.WriteLine("0- Sair");
             Console.Write("R: ");
 
-            bool conversao = int.TryParse(Console.ReadLine(), out int option);
-
-            if (!conversao)
+            if(int.TryParse(Console.ReadLine(), out int option))
+            {
+                return option;
+            }
+            else
             {
                 Console.WriteLine("Voce deve digitar um numero!");
                 Console.Write("Pressione qualquer tecla para voltar ao menu...");
                 Console.ReadKey();
                 return Menu();
             }
-
-            return option;
         }
 
         static void VerificarIgualdades(PilhaNumero p1, PilhaNumero p2)
@@ -116,17 +116,11 @@ namespace ManipulandoPilhas
             int sizeP2 = p2.GetTamanho();
 
             if (sizeP1 == sizeP2)
-            {
                 Console.WriteLine("As pilhas possuem o mesmo tamanho!");
-            }
             else if (sizeP1 > sizeP2)
-            {
                 Console.WriteLine("A pilha p1 é maior do que a pilha p2!");
-            }
             else
-            {
                 Console.WriteLine("A pilha p2 é maior do que a pilha p1!");
-            }
         }
 
         static Numero LerNumero()
